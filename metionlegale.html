@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - Blog de Maîtresse Nelly</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ff00d4, #00b3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        a {
+            color: #ff00d4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+    <header class="bg-black bg-opacity-50 fixed w-full z-50 transition-all duration-300" id="navbar">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-3xl font-bold flex items-center space-x-2 gradient-text">
+                    <box-icon name='heart-circle' animation='tada' color='#ff00d4'></box-icon>
+                    <span>Maîtresse Nelly</span>
+                </a>
+                <ul class="hidden md:flex space-x-6 text-lg">
+                        <li><a href="./blog.html" class="nav-link hover:text-fuchsia-400 transition-colors duration-300">
+                            <box-icon name='book' size="1.2rem" color="#ff00d4"></box-icon> Blog</a></li>
+                        <li><a href="#" class="nav-link hover:text-fuchsia-400 transition-colors duration-300">
+                            <box-icon name='log-out' size="1.2rem" color="#ff00d4"></box-icon> Contact</a></li>
+                </ul>
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <box-icon name='menu' color='#ff00d4'></box-icon>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <br>
+    <br>
+
+    <main class="mt-24 container mx-auto px-6 lg:px-12 py-12">
+        <h1 class="text-4xl font-extrabold gradient-text mb-8">Mentions Légales</h1>
+
+        <section class="mb-8">
+            <p class="text-lg leading-relaxed">
+                Ce blog est un espace personnel dédié à mes passions, mes réflexions et mon univers. Il est édité à titre non professionnel, dans un but de partage et d'expression.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Éditeur du blog</h2>
+            <p>
+                Ce blog est édité par :
+            </p>
+            <ul class="list-disc list-inside text-gray-300">
+                <li>Nom :  Nelly</li>
+                <li>Email : <a href="mailto:contact@maitressenelly.com">frexgnelly@gmail.com</a></li>
+                <li>Nom : Noelson</li>
+                <li>Email : <a href="mailto:contact@maitressenelly.com">trulesdoniphane2@gmail.com</a></li>
+            </ul>
+            <p class="text-gray-300 mt-4">
+                Pour toute question ou demande, n’hésitez pas à me contacter par email.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Propriété intellectuelle</h2>
+            <p>
+                Les contenus publiés sur ce blog (textes, images, etc.) sont ma propriété, sauf mention contraire. Toute reproduction ou utilisation sans autorisation est interdite.
+            </p>
+        </section>
+
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">Responsabilité</h2>
+            <p>
+                Ce blog est un espace personnel. Les informations partagées reflètent mes opinions et expériences personnelles. Je ne peux être tenue responsable des conséquences liées à leur usage.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold mb-4">Contact</h2>
+            <p>
+                Pour toute question, suggestion ou demande, vous pouvez me joindre par email à l’adresse suivante : 
+                <a href="mailto:contact@maitressenelly.com">frexgnelly@gmail.com</a>.
+            </p>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 Maîtresse Nelly. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

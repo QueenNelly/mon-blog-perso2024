@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Complet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-800">Article Complet</h1>
+      <button onclick="goBack()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+        Retour
+      </button>
+    </div>
+  </header>
+
+  <main id="article-container" class="container mx-auto px-4 py-8 max-w-3xl"></main>
+
+  <script>
+    // Récupération de l'article depuis le stockage local
+    const article = JSON.parse(localStorage.getItem("selectedArticle"));
+
+    const renderArticle = () => {
+      if (!article) {
+        document.getElementById("article-container").innerHTML = "<p class='text-center text-gray-600'>Aucun article trouvé.</p>";
+        return;
+      }
+      document.getElementById("article-container").innerHTML = `
+        <article class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <img src="${article.image}" alt="${article.title}" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">${article.title}</h1>
+            <p class="text-gray-600 mb-4"><span class="font-semibold">Par ${article.author}</span> | <time datetime="${article.date}">${new Date(article.date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</time></p>
+            <div class="prose max-w-none">
+              ${article.fullContent}
+            </div>
+          </div>
+        </article>
+      `;
+    };
+
+    // Bouton de retour
+    const goBack = () => {
+      window.location.href = "blog.html";
+    };
+
+    // Affiche l'article au chargement
+    renderArticle();
+  </script>
+</body>
+</html>
+
