@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Post</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+         .gradient-text {
+            background: linear-gradient(45deg, #ff00d4, #00b3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff00d4',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="text-3xl font-bold flex items-center space-x-2 gradient-text">
+                    <box-icon name='heart-circle' animation='tada' color='#ff00d4'></box-icon>
+                    <span>Maîtresse Nelly</span>
+                </a>
+                <ul class="hidden md:flex space-x-6 text-lg">
+                    <li><a href="./blog.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                        <box-icon name='book' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1">Blog</span>
+                    </a></li>
+                    <li><a href="Post.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                        <box-icon name='repost' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1">Post</span>
+                    </a></li>
+                    <li><a href="Contact.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                        <box-icon name='envelope' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1">Contact</span>
+                    </a></li>
+                </ul>
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <box-icon name='menu' color='#ff00d4'></box-icon>
+                </button>
+            </div>
+            <div class="md:hidden">
+                <ul class="hidden mt-3 space-y-2" id="mobile-menu">
+                    <li><a href="./blog.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Blog</a></li>
+                    <li><a href="Post.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Post</a></li>
+                    <li><a href="Contact.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-8">Mes Publications sur X</h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="https://x.com/QueenNe93659020/status/1855881177821003779" target="_blank" class="block">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <img src="images/5.webp" alt="Image du post" class="w-full h-100 object-cover">
+                    <div class="p-4">
+                        <p class="text-gray-700 text-sm">Assieds-toi à mes pieds les yeux rivés sur moi prouve-moi que ta dévotion est à la hauteur du temps que je t'accorde 🤍 🦶🔥</p>
+                    </div>
+                    <div class="bg-gray-100 px-4 py-3 flex justify-between items-center text-sm text-gray-600">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center">
+                                <i class='bx bx-comment mr-1'></i>
+                                <span>3</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class='bx bx-repost mr-1'></i>
+                                <span>2</span>
+                            </div>
+                            <div class="flex items-center text-primary">
+                                <i class='bx bxs-heart mr-1'></i>
+                                <span>18</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class='bx bx-stats mr-1'></i>
+                            <span>1179 vues</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+
+            
+
+
+        </div>
+    </main>
+
+    <script>
+    
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</body>
+</html>

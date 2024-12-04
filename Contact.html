@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+ .gradient-text {
+    background: linear-gradient(45deg, #ff00d4, #00b3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+</style>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="index.html" class="text-3xl font-bold flex items-center space-x-2 gradient-text">
+                    <box-icon name='heart-circle' animation='tada' color='#ff00d4'></box-icon>
+                    <span>Maîtresse Nelly</span>
+                </a>
+                <ul class="hidden md:flex space-x-6 text-lg">
+                    <li><a href="./blog.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                        <box-icon name='book' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1">Blog</span>
+                    </a></li>
+                    <li><a href="Post.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                        <box-icon name='repost' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1">Post</span>
+                    </a></li>
+                    <li><a href="Contact.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                        <box-icon name='envelope' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1">Contact</span>
+                    </a></li>
+                </ul>
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <box-icon name='menu' color='#ff00d4'></box-icon>
+                </button>
+            </div>
+            <div class="md:hidden">
+                <ul class="hidden mt-3 space-y-2" id="mobile-menu">
+                    <li><a href="./blog.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Blog</a></li>
+                    <li><a href="Post.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Post</a></li>
+                    <li><a href="Contact.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <iframe src="https://v2-embednotion.com/151cdc8d8d998015b3f5fc609301fcab" style="width: 100%; height: 1200px; border: 2px solid ; border-radius: 10px; padding: none;"></iframe>
+</body>
+
+<script>
+    
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            navbar.classList.add('shadow-lg');
+        } else {
+            navbar.classList.remove('shadow-lg');
+        }
+    });
+</script>
+</html>

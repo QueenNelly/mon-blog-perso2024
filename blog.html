@@ -73,7 +73,7 @@ body {
 
 .full-article img {
     width: 100%;
-    max-height: 700px;
+    max-height: auto;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 1.5rem;
@@ -89,18 +89,25 @@ body {
 </head>
 <body class="min-h-screen flex flex-col">
     <header class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
-        <nav class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
+
+        
+        
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
                 <a href="index.html" class="text-3xl font-bold flex items-center space-x-2 gradient-text">
                     <box-icon name='heart-circle' animation='tada' color='#ff00d4'></box-icon>
                     <span>Maîtresse Nelly</span>
                 </a>
                 <ul class="hidden md:flex space-x-6 text-lg">
-                    <li><a href="./blog.html" class="nav-link hover:text-fuchsia-400 transition-colors duration-300 flex items-center">
+                    <li><a href="./blog.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
                         <box-icon name='book' size="1.2rem" color="#ff00d4"></box-icon>
                         <span class="ml-1">Blog</span>
                     </a></li>
-                    <li><a href="#" class="nav-link hover:text-fuchsia-400 transition-colors duration-300 flex items-center">
+                    <li><a href="Post.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                        <box-icon name='repost' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1">Post</span>
+                    </a></li>
+                    <li><a href="Contact.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
                         <box-icon name='envelope' size="1.2rem" color="#ff00d4"></box-icon>
                         <span class="ml-1">Contact</span>
                     </a></li>
@@ -111,18 +118,28 @@ body {
             </div>
             <div class="md:hidden">
                 <ul class="hidden mt-3 space-y-2" id="mobile-menu">
-                    <li><a href="./blog.html" class="block py-2 px-4 text-sm hover:bg-fuchsia-100 rounded transition-colors duration-300">Blog</a></li>
-                    <li><a href="#" class="block py-2 px-4 text-sm hover:bg-fuchsia-100 rounded transition-colors duration-300">Contact</a></li>
+                    <li><a href="./blog.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Blog</a></li>
+                    <li><a href="Post.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Post</a></li>
+                    <li><a href="Contact.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Contact</a></li>
                 </ul>
             </div>
+          
+            
         </nav>
+        
     </header>
 
+    
+
+
+    
 
     <main class="flex-grow container mx-auto px-6 py-8 mt-20">
         <h1 class="text-4xl font-bold mb-8 text-center gradient-text">Les articles du  Blog</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blogContainer"></div>
     </main>
+
+    
 
     <div id="fullArticle" class="full-article">
         <div class="full-article-content">
@@ -131,9 +148,9 @@ body {
             <img id="fullArticleImage" src="" alt="" class="rounded-lg shadow-md">
             <div id="fullArticleDescriptions"></div> 
             <div class="full-article-meta flex justify-between text-sm text-gray-500">
-                <span id="fullArticleCategory" class="flex items-center"></span>
-                <span id="fullArticleAuthor" class="flex items-center"></span>
-                <span id="fullArticleDate" class="flex items-center"></span>
+                <span id="fullArticleCategory" class="flex items-center text-blue-600"></span>
+                <span id="fullArticleAuthor" class="flex items-center text-yellow-600"></span>
+                <span id="fullArticleDate" class="flex items-center text-red-600"></span>
             </div>
         </div>
     </div>
@@ -149,20 +166,37 @@ body {
     <script>
         const blogPosts = [
             {
-                title: "Du soleil de La Réunion aux lumières de Monaco l’aventure commence",
-                image: "./images/41.png",
-                description: "Le 27 novembre 2024, une date que je n’oublierai pas. Ce jour-là, j’ai quitté La Réunion, mon petit paradis tropical, pour une destination aussi glamour qu’intrigante : Monaco. Accompagnée de ma compagne, mon roc, et d’Éloïse, ma précieuse alliée (et experte en organisation), je me lance dans un voyage qui s’annonce mémorable.",
-                description2: "Le 27 novembre 2024, une date gravée dans ma mémoire. Ce jour-là, j’ai quitté mon île de La Réunion, avec ses plages de sable fin et ses saveurs exotiques, pour une aventure des plus excitantes : Monaco. Accompagnée de ma compagne, ma partenaire de toujours, et d’Éloïse, mon alliée dévouée, je me lance dans un voyage qui promet d’être riche en découvertes et en émotions.",
+                title: " Monaco l’aventure commence",
+                image: "./images/41.webp",
+                description: "Le 27 novembre 2024, une date que je n’oublierai pas. Ce jour-là, pour une destination aussi glamour qu’intrigante : Monaco. Accompagnée de ma compagne, mon roc, et d’Éloïse, ma précieuse alliée (et experte en organisation), je me lance dans un voyage qui s’annonce mémorable.",
+                description2: "Le 27 novembre 2024, une date gravée dans ma mémoire. Pour une aventure des plus excitantes : Monaco. Accompagnée de ma compagne, ma partenaire de toujours, et d’Éloïse, mon alliée dévouée, je me lance dans un voyage qui promet d’être riche en découvertes et en émotions.",
                 description3: "Le départ n’a pas été de tout repos. À 5h du matin, alors que l’île s’éveille doucement, chez nous, c’est déjà l’effervescence. Valises qui débordent, une checklist mystérieusement envolée, et une quête frénétique des passeports… Le chaos habituel d’un grand départ. Heureusement, Éloïse, méthodique comme toujours, prend les choses en main et gère tout avec une efficacité qui force l’admiration.",
-                description4: "Dans nos bagages, l’essentiel : tenues élégantes pour le glamour monégasque, accessoires soigneusement sélectionnés pour des moments intimes, et un pot de piment maison, parce qu’on ne sait jamais si les cuisines locales sauront relever nos plats à notre goût. ",
+                description4: "Dans nos bagages, l’essentiel : tenues élégantes pour le glamour monégasque, accessoires soigneusement sélectionnés pour des moments intimes,. ",
                 description5: " Arrivées à l’aéroport, l’émotion monte d’un cran. Derniers regards échangés avec notre île, mélange de nostalgie et d’excitation. Mais une fois installées dans l’avion, l’euphorie du voyage prend le dessus. On discute, on rit, on débat de sujets essentiels comme Monaco est-elle une ville ou juste un bijou hors de prix ? et Le champagne à bord, c’est chic ou cliché ? Pendant ce temps, Éloïse veille discrètement à mon confort, anticipant mes moindres besoins avec son dévouement habituel.",
                 description6: "Au fil des escales, le froid européen commence à se faire sentir. Un choc après la chaleur de notre île, mais qui ajoute une touche d’exotisme à cette aventure. Et enfin, après des heures de voyage, nous atterrissons à Monaco.",
                 description7: "L’arrivée est digne d’un film. La Principauté brille de mille feux, entre les yachts illuminés du port Hercule et les décorations de fin d’année qui habillent les rues. Tout ici respire le luxe et l’élégance. Notre hôtel, avec sa vue imprenable sur la Méditerranée, nous offre un accueil digne de ce nom. Une fois installées, je prends un moment pour contempler cette nouvelle étape de ma vie. Ma compagne, avec son regard complice, partage mon excitation, tandis qu’Éloïse, toujours dévouée, s’affaire à tout organiser pour que je me sente immédiatement chez moi.",
-                description8: "Ce voyage marque bien plus qu’un simple changement de décor. C’est le début d’une nouvelle aventure, une opportunité de resserrer les liens et de créer des souvenirs inoubliables. La Réunion restera toujours dans mon cœur, mais Monaco, avec son charme et son ambiance festive, ouvre un chapitre prometteur de ma vie.",
+                description8: "Ce voyage marque bien plus qu’un simple changement de décor. C’est le début d’une nouvelle aventure, une opportunité de resserrer les liens et de créer des souvenirs inoubliables.Mais Monaco, avec son charme et son ambiance festive, ouvre un chapitre prometteur de ma vie.",
              
                 category: "Voyage",
                 author: "QueenNelly",
                 date : "01/12/2024"
+            },
+
+            {
+                title: "Une Expérience Inoubliable : Premier Vol en Hélicoptère à Monaco",
+                image: "./images/4.webp",
+                description: "Aujourd’hui, j’ai réalisé un rêve, et pas seule : j’étais accompagnée de ma compagne et d’Éloïse, pour un moment à couper le souffle. Nous avons pris place à bord d’un hélicoptère pour découvrir Monaco vu du ciel, une expérience que je ne suis pas prête d’oublier.",
+                description2: "Aujourd’hui, j’ai réalisé un rêve, et pas seule : j’étais accompagnée de ma compagne et d’Éloïse, pour un moment à couper le souffle. Nous avons pris place à bord d’un hélicoptère pour découvrir Monaco vu du ciel, une expérience que je ne suis pas prête d’oublier.",
+                description3: "Tout a commencé par une légère appréhension en voyant l’hélicoptère se poser élégamment sur l’héliport. Mais très vite, l’excitation a pris le dessus. Équipées de nos casques et confortablement installées, nous avons senti l’appareil quitter le sol. Et là, une montée d’adrénaline : le paysage de Monaco qui s’étale sous nos pieds, magnifique et majestueux.",
+                description4: "La vue depuis là-haut est tout simplement spectaculaire. La Méditerranée scintille sous le soleil, les yachts s’alignent au port comme des perles rares, et le Palais Princier domine fièrement la colline. J’ai observé ma compagne, émerveillée, un sourire radieux sur le visage, et Éloïse, qui semblait mi-fascinée, mi-intimidée par cette expérience nouvelle ",
+                description5: "Nous avons survolé le circuit de Formule 1, les plages du Larvotto, et le célèbre Casino de Monte-Carlo. Chaque détail prenait une dimension magique vue d’en haut. Le pilote, chaleureux et professionnel, a partagé des anecdotes captivantes sur les lieux emblématiques que nous survolions.",
+                description6: "Ce vol n’a duré qu’une vingtaine de minutes, mais le souvenir restera gravé en moi pour toujours. Il n’y a rien de tel que de vivre des moments aussi extraordinaires avec des personnes chères à son cœur.",
+                description7: "Si vous avez l’occasion de visiter Monaco, je vous recommande vivement de vous offrir cette parenthèse magique. Croyez-moi, la vue en vaut mille mots !",
+                description8: "",
+             
+                category: "Voyage",
+                author: "QueenNelly",
+                date : "03/12/2024"
             }
         ];
 
@@ -174,9 +208,9 @@ body {
                         <h2 class="text-xl font-semibold mb-2">${post.title}</h2>
                         <p class="text-gray-600 text-sm mb-4">${post.description.substring(0, 100)}...</p>
                         <div class="flex justify-between text-sm text-gray-500">
-                            <span class="flex items-center"><i class='bx bx-purchase-tag mr-1'></i>${post.category}</span>
-                            <span class="flex items-center"><i class='bx bx-user mr-1'></i>${post.author}</span>
-                                <span class="flex items-center"><i class='bx bx-user mr-1'></i>${post.date}</span>
+                            <span class="flex items-center text-blue-600 "><i class='bx bx-purchase-tag mr-1'></i>${post.category}</span>
+                            <span class="flex items-center text-yellow-600"><i class='bx bx-user mr-1'></i>${post.author}</span>
+                                <span class="flex items-center text-red-600"><i class='bx bx-user mr-1'></i>${post.date}</span>
                         </div>
                     </div>
                 </div>
@@ -217,6 +251,38 @@ body {
         });
 
         renderBlogPosts();
+
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+
+        document.querySelector('.close-btn').addEventListener('click', function() {
+    document.getElementById('fullArticle').style.display = 'none';
+});
+
+document.getElementById('fullArticle').addEventListener('click', function(event) {
+    // Vérifiez si l'élément cliqué est le fond du modale
+    if (event.target === document.getElementById('fullArticle')) {
+        document.getElementById('fullArticle').style.display = 'none';
+    }
+});
+
     </script>
 </body>
 </html>
