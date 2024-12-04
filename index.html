@@ -1,11 +1,12 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog personnel de Maîtresse Nelly : un espace captivant où je partage mon quotidien, mes réflexions et mon univers unique.">
+    <meta name="keywords" content="Maîtresse Nelly, blog, réflexions, BDSM, lifestyle, quotidien">
+    <meta name="author" content="Maîtresse Nelly">
     <title>Accueil - Blog de Maîtresse Nelly</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -55,87 +56,197 @@
             animation: float 6s ease-in-out infinite;
         }
 
+        #countdown-banner {
+        position: relative;
+        z-index: 40;
+    }
+    #countdown {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #ff00d4;
+    }
+    #countdown-banner a {
+        text-decoration: none;
+    }
+
         @keyframes float {
-            0% { transform: translatey(0px); }
-            50% { transform: translatey(-20px); }
-            100% { transform: translatey(0px); }
+            0% {
+                transform: translatey(0px);
+            }
+
+            50% {
+                transform: translatey(-20px);
+            }
+
+            100% {
+                transform: translatey(0px);
+            }
         }
     </style>
 </head>
 
-<body class="bg-gray-900 text-white">
-    <header class="bg-black bg-opacity-50 fixed w-full z-50 transition-all duration-300" id="navbar">
-        <nav class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
+<body class="bg-gray-900 text-gray-100">
+    
+    <!-- Header -->
+    <header class="bg-black shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="bg-gray-800 text-center py-4">
+            <p class="text-white text-xl">
+                Dans <span id="countdown" class="font-bold text-pink-500"></span>, une surprise vous attend sur mon compte X !
+            </p>
+        </div>
+        
+
+        
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
                 <a href="index.html" class="text-3xl font-bold flex items-center space-x-2 gradient-text">
                     <box-icon name='heart-circle' animation='tada' color='#ff00d4'></box-icon>
                     <span>Maîtresse Nelly</span>
                 </a>
                 <ul class="hidden md:flex space-x-6 text-lg">
-                        <li><a href="./blog.html" class="nav-link hover:text-fuchsia-400 transition-colors duration-300">
-                            <box-icon name='book' size="1.2rem" color="#ff00d4"></box-icon> Blog</a></li>
-                        <li><a href="#" class="nav-link hover:text-fuchsia-400 transition-colors duration-300">
-                            <box-icon name='log-out' size="1.2rem" color="#ff00d4"></box-icon> Contact</a></li>
+                    <li><a href="./blog.html" class="nav-link flex items-center">
+                        <box-icon name='book' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1 text-white">Blog</span>
+                    </a></li>
+                    <li><a href="post.html" class="nav-link flex items-center">
+                        <box-icon name='repost' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1 text-white">Post</span>
+                    </a></li>
+                    <li><a href="contact.html" class="nav-link flex items-center">
+                        <box-icon name='envelope' size="1.2rem" color="#ff00d4"></box-icon>
+                        <span class="ml-1 text-white">Contact</span>
+                    </a></li>
                 </ul>
                 <button class="md:hidden focus:outline-none" id="menu-toggle">
                     <box-icon name='menu' color='#ff00d4'></box-icon>
                 </button>
             </div>
+            <div class="md:hidden">
+                <ul class="mobile-menu hidden mt-3 space-y-2 px-4 pb-4">
+                    <li><a href="./blog.html" class="block py-2 px-4 text-sm text-white hover:bg-fuchsia-600 hover:text-white rounded transition-colors duration-300">Blog</a></li>
+                    <li><a href="post.html" class="block py-2 px-4 text-sm text-white hover:bg-fuchsia-600 hover:text-white rounded transition-colors duration-300">Post</a></li>
+                    <li><a href="contact.html" class="block py-2 px-4 text-sm text-white hover:bg-fuchsia-600 hover:text-white rounded transition-colors duration-300">Contact</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
-    <div class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('./images/35.png');">
-        <div class="bg-black bg-opacity-80 p-12 md:p-16 rounded-lg text-center shadow-2xl max-w-3xl mx-4 transform transition duration-500 hover:scale-105 animate-float">
+    <!-- Hero Section -->
+    <div class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('./images/35.webp');">
+        <div class="bg-black bg-opacity-80 p-12 md:p-16 rounded-lg text-center shadow-2xl max-w-3xl mx-4 animate-float">
             <h2 class="text-5xl md:text-6xl font-extrabold mb-6 gradient-text tracking-wide">
-                Bienvenue sur le Blog de Maîtresse Nelly
+                Bienvenue dans mon univers
             </h2>
             <p class="text-lg md:text-2xl mb-8 text-gray-300">
-                Un espace où je partage mon quotidien, mes passions et mes réflexions avec authenticité.
+                Explorez mes pensées, mes passions et un regard authentique sur mon quotidien.
             </p>
         </div>
     </div>
 
+    <!-- About Section -->
     <section id="about" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6 lg:px-12 text-center">
             <h3 class="text-4xl font-extrabold gradient-text mb-12 tracking-wide">
-                À propos de Moi
+                Qui suis-je ?
             </h3>
-            <div class="text-gray-300 space-y-6">
-                <p class="text-xl font-semibold text-yellow-300 mb-4">
-                    Qui suis-je ?
-                </p>
-                <p class="text-3xl font-bold text-white italic">
-                    Une femme passionnée et authentique
-                </p>
-                <p class="text-lg leading-relaxed text-gray-100">
-                    Je suis Maîtresse Nelly. À travers ce blog, je partage mes expériences et mes pensées sur une variété de sujets. Mon univers est unique, et ici, vous découvrirez une part de moi au-delà des apparences.
-                </p>
-            </div>
+            <p class="text-lg leading-relaxed text-gray-100">
+                Je suis une femme passionnée, partageant mes réflexions uniques et mes expériences au-delà des apparences.
+            </p>
             <div class="my-10">
-                <img src="./images/17.png" alt="Maîtresse Nelly" class="mx-auto w-full max-w-lg rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg filter" />
+                <img src="./images/17.webp" alt="Portrait de Maîtresse Nelly" class="mx-auto w-full max-w-lg rounded-full hover:scale-105 shadow-lg" loading="lazy" />
             </div>
-            <a href="blog.html" class="text-fuchsia-500 border-2 border-fuchsia-500 font-bold text-lg px-8 py-3 rounded-lg shadow-lg hover:bg-fuchsia-600 hover:text-white transition duration-300 ease-in-out transform hover:scale-105">
+            <a href="blog.html" class="text-fuchsia-500 border-2 border-fuchsia-500 font-bold text-lg px-8 py-3 rounded-lg shadow-lg hover:bg-fuchsia-600 hover:text-white transition transform hover:scale-105">
                 Découvrir mes écrits
             </a>
-            
         </div>
     </section>
 
+
+
+
+
+    <section id="latest-posts" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6 lg:px-12">
+            <h3 class="text-4xl font-extrabold gradient-text mb-12 tracking-wide text-center">
+                Derniers Articles
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition duration-300">
+                    <img src="./images/4.webp" alt="Titre de l'article" class="rounded-md mb-4 " loading="lazy">
+                    <h4 class="text-2xl font-bold text-fuchsia-500 mb-2">Une Expérience Inoubliable : Premier Vol en Hélicoptère à Monaco</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        Aujourd’hui, j’ai réalisé un rêve, et pas seule : j’étais accompagnée de ma compagne et d’Éloïse, pour un moment à couper le souffle. Nous avons pris place à bord d’un hélicoptère pour découvrir Monaco vu du ciel, une expérience que je ne suis pas prête d’oublier.
+                    </p>
+                    <a href="./blog.html" class="text-white font-bold hover:underline">Lire l'article →</a>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition duration-300">
+                    <img src="./images/41.webp" alt="Titre de l'article" class="rounded-md mb-4" loading="lazy">
+                    <h4 class="text-2xl font-bold text-fuchsia-500 mb-2">Monaco l’aventure commence</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        Le 27 novembre 2024, une date gravée dans ma mémoire. Pour une aventure des plus excitantes : Monaco. Accompagnée de ma compagne, ma partenaire de toujours, et d’Éloïse, mon alliée dévouée, je me lance dans un voyage qui promet d’être riche en découvertes et en émotions...
+                    </p>
+                    <a href="./blog.html" class="text-white font-bold hover:underline">Lire l'article →</a>
+                </div>
+           
+            </div>
+        </div>
+    </section>
+
+    
+    
+
+    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-6 text-center">
             <p>&copy; 2024 Maîtresse Nelly. Tous droits réservés.</p>
-            <a href="metionlegale.html">Mention légale</a>
+            <a href="./metionlegale.html" class="hover:underline text-fuchsia-500">Mentions légales</a>
         </div>
     </footer>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 <script>
-    // Toggle the menu in mobile view
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-        const menu = document.querySelector('ul');
-        menu.classList.toggle('hidden');
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        document.querySelector('.mobile-menu').classList.toggle('hidden');
     });
+
+       // Définir une date fixe pour la fin du compte à rebours
+    const countdownEndDate = new Date('2024-12-24T12:00:00');
+
+function updateCountdown() {
+    const now = new Date();
+    const timeLeft = countdownEndDate - now;
+
+    if (timeLeft <= 0) {
+        // Une fois le compte à rebours terminé, afficher un message et un lien
+        document.getElementById('countdown').innerHTML = `
+            <p class="text-lg md:text-2xl text-yellow-300 font-bold mb-4">
+                La surprise est arrivée !
+            </p>
+            <a href="https://x.com/QueenNe93659020" target="_blank" 
+               class="bg-pink-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-pink-600 transition duration-300">
+                Découvrir la surprise sur mon compte X
+            </a>`;
+        clearInterval(interval); // Arrête le compte à rebours
+        return;
+    }
+
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+    // Mettre à jour l'affichage du compte à rebours
+    document.getElementById('countdown').innerText = 
+        `${days} jours ${hours}h ${minutes}m ${seconds}s`;
+}
+
+// Mettre à jour le compte à rebours toutes les secondes
+const interval = setInterval(updateCountdown, 1000);
+
+// Initialisation immédiate
+updateCountdown();
 </script>
 
 </html>
