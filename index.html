@@ -11,88 +11,190 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
+    
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Playfair Display', serif;
+            background-color: #1a1a1a;
+            color: #e4e4e4;
         }
-
+    
         .gradient-text {
-            background: linear-gradient(45deg, #ff00d4, #00b3ff);
+            background: linear-gradient(45deg, #c026d3, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
+    
         .nav-link {
             position: relative;
-            overflow: hidden;
+            color: #e4e4e4;
         }
-
+    
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: -2px;
+            left: 50%;
             width: 0;
             height: 2px;
-            background-color: #ff00d4;
-            transition: width 0.3s ease;
+            background-color: #ec4899;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
-
+    
         .nav-link:hover::after {
             width: 100%;
         }
-
+    
         .service-card {
-            transition: all 0.3s ease;
+            background: #262626;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
+    
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0px 4px 15px rgba(236, 72, 153, 0.4);
         }
-
+    
         .animate-float {
-            animation: float 6s ease-in-out infinite;
+            animation: float 4s ease-in-out infinite;
         }
-
-        #countdown-banner {
-        position: relative;
-        z-index: 40;
-    }
-    #countdown {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #ff00d4;
-    }
-    #countdown-banner a {
-        text-decoration: none;
-    }
-
+    
+        footer {
+            background-color: #262626;
+            color: #e4e4e4;
+        }
+    
+        .footer-link {
+            color: #ec4899;
+            transition: color 0.3s ease;
+        }
+    
+        .footer-link:hover {
+            color: #c026d3;
+        }
+    
         @keyframes float {
             0% {
-                transform: translatey(0px);
+                transform: translateY(0);
             }
-
             50% {
-                transform: translatey(-20px);
+                transform: translateY(-15px);
             }
-
             100% {
-                transform: translatey(0px);
+                transform: translateY(0);
             }
         }
+
+        #popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .popup-content {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            max-width: 400px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .popup-content h2 {
+            color: #f43f5e;
+            margin-bottom: 15px;
+        }
+
+        .popup-content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .popup-content button {
+            background-color: #f43f5e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-content button:hover {
+            background-color: #c026d3;
+        }
+
+        /* Masquer le contenu principal si le popup est actif */
+        body.blocked #main-content {
+            display: none;
+        }
     </style>
+    
 </head>
 
 <body class="bg-gray-900 text-gray-100">
+
+    <div id="popup" style="display: none;">
+        <div class="popup-content">
+            <h2>Avertissement Contenu Adulte</h2>
+            <p>Ce blog est réservé aux adultes (+18 ans). Vous devez avoir 18 ans ou plus pour accéder à ce contenu.</p>
+            <button id="confirm-age">J'ai plus de 18 ans</button>
+        </div>
+    </div>
+
+    <script>
+        function isOver18() {
+            const savedDate = localStorage.getItem('adultContentConfirmed');
+            if (savedDate) {
+                const savedDateObj = new Date(savedDate);
+                const today = new Date();
+                const timeDifference = today - savedDateObj;
+                const oneDay = 24 * 60 * 60 * 1000; // Millisecondes dans une journée
+                return timeDifference < oneDay; // Affiche le popup si plus de 24 heures se sont écoulées
+            }
+            return false; // Si aucune date enregistrée, affiche le popup
+        }
+
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'flex';
+        }
+
+        function hidePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+
+        function saveConfirmationDate() {
+            const today = new Date();
+            localStorage.setItem('adultContentConfirmed', today.toISOString());
+        }
+
+        document.getElementById('confirm-age').addEventListener('click', () => {
+            saveConfirmationDate();
+            hidePopup();
+        });
+
+        // Vérifie si le popup doit être affiché
+        if (!isOver18()) {
+            showPopup();
+        }
+    </script>
     
     <!-- Header -->
     <header class="bg-black shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
         <div class="bg-gray-800 text-center py-4">
-            <p class="text-white text-xl">
-                Dans <span id="countdown" class="font-bold text-pink-500"></span>, une surprise vous attend sur mon compte X !
-            </p>
+           
         </div>
         
 
@@ -108,11 +210,11 @@
                         <box-icon name='book' size="1.2rem" color="#ff00d4"></box-icon>
                         <span class="ml-1 text-white">Blog</span>
                     </a></li>
-                    <li><a href="post.html" class="nav-link flex items-center">
+                    <li><a href="./Post.html" class="nav-link flex items-center">
                         <box-icon name='repost' size="1.2rem" color="#ff00d4"></box-icon>
                         <span class="ml-1 text-white">Post</span>
                     </a></li>
-                    <li><a href="contact.html" class="nav-link flex items-center">
+                    <li><a href="./Contact.html" class="nav-link flex items-center">
                         <box-icon name='envelope' size="1.2rem" color="#ff00d4"></box-icon>
                         <span class="ml-1 text-white">Contact</span>
                     </a></li>
@@ -131,122 +233,310 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <div class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('./images/35.webp');">
-        <div class="bg-black bg-opacity-80 p-12 md:p-16 rounded-lg text-center shadow-2xl max-w-3xl mx-4 animate-float">
-            <h2 class="text-5xl md:text-6xl font-extrabold mb-6 gradient-text tracking-wide">
-                Bienvenue dans mon univers
-            </h2>
-            <p class="text-lg md:text-2xl mb-8 text-gray-300">
-                Explorez mes pensées, mes passions et un regard authentique sur mon quotidien.
-            </p>
+<!-- Hero Section -->
+<div class="relative h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('./images/42.png');">
+    <!-- Overlay sombre pour contraste -->
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+
+    <!-- Contenu principal -->
+    <div class="relative z-10 text-center max-w-4xl px-6 md:px-12">
+        <h1 class="text-5xl md:text-7xl font-extrabold gradient-text tracking-wide mb-6">
+            Bienvenue dans mon univers
+        </h1>
+        <p class="text-lg md:text-2xl text-gray-300 leading-relaxed mb-8">
+            Plongez dans un monde où sensualité, domination et passion se mêlent pour raconter une histoire unique. Ici, chaque réflexion, chaque instant, est une invitation à explorer le pouvoir des liens authentiques.
+        </p>
+        <div class="flex justify-center gap-6">
+            <a href="./blog.html" class="text-fuchsia-500 border-2 border-fuchsia-500 font-bold text-lg px-8 py-3 rounded-lg shadow-lg hover:bg-fuchsia-600 hover:text-white transition transform hover:scale-105">
+                Découvrir mon blog
+            </a>
+            <a href="./Contact.html" class="text-gray-300 border-2 border-gray-300 font-bold text-lg px-8 py-3 rounded-lg shadow-lg hover:bg-gray-700 hover:text-white transition transform hover:scale-105">
+                Me contacter
+            </a>
         </div>
     </div>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6 lg:px-12 text-center">
-            <h3 class="text-4xl font-extrabold gradient-text mb-12 tracking-wide">
-                Qui suis-je ?
-            </h3>
-            <p class="text-lg leading-relaxed text-gray-100">
-                Je suis une femme passionnée, partageant mes réflexions uniques et mes expériences au-delà des apparences.
-            </p>
-            <div class="my-10">
-                <img src="./images/17.webp" alt="Portrait de Maîtresse Nelly" class="mx-auto w-full max-w-lg rounded-full hover:scale-105 shadow-lg" loading="lazy" />
+    <!-- Animation décorative en bas -->
+    <div class="absolute bottom-0 w-full flex justify-center">
+        <div class="relative">
+            <svg class="w-full max-w-3xl" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#c026d3" fill-opacity="1" d="M0,288L120,272C240,256,480,224,720,192C960,160,1200,128,1320,112L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-6 lg:px-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Texte de présentation -->
+            <div class="text-center md:text-left">
+                <h3 class="text-4xl font-extrabold gradient-text mb-6 tracking-wide">
+                    Qui suis-je ?
+                </h3>
+                <p class="text-lg leading-relaxed text-gray-100 mb-6">
+                    Maîtresse Nelly, une femme qui transcende les apparences pour partager un univers où la sensualité et le contrôle s'entremêlent. Passionnée par l'art de la domination et la richesse des relations humaines, je tisse des liens uniques empreints de respect, de profondeur et d'audace. Chaque réflexion, chaque expérience, est un fragment de mon monde que je partage ici avec toi.
+                </p>
+                <p class="text-lg leading-relaxed text-gray-100 mb-6">
+                    Mon chemin est celui de l’exploration et de la maîtrise : un mélange subtil entre force et douceur, où chaque geste est une affirmation de pouvoir et de raffinement. Bienvenue dans mon univers, où les barrières tombent et les esprits s’ouvrent.
+                </p>
+                <a href="blog.html" class="inline-block text-fuchsia-500 border-2 border-fuchsia-500 font-bold text-lg px-8 py-3 rounded-lg shadow-lg hover:bg-fuchsia-600 hover:text-white transition transform hover:scale-105">
+                    Découvrir mes écrits
+                </a>
             </div>
-            <a href="blog.html" class="text-fuchsia-500 border-2 border-fuchsia-500 font-bold text-lg px-8 py-3 rounded-lg shadow-lg hover:bg-fuchsia-600 hover:text-white transition transform hover:scale-105">
-                Découvrir mes écrits
+
+            <!-- Image avec effet -->
+            <div class="relative">
+                <img src="./images/43.jpg" alt="Portrait de Maîtresse Nelly" class="w-full max-w-md mx-auto rounded-lg shadow-lg hover:scale-105 transform transition duration-300" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 rounded-lg shadow-xl mix-blend-multiply"></div>
+                <div class="absolute bottom-4 right-4 bg-fuchsia-600 text-gray-100 px-4 py-2 rounded-lg text-sm font-semibold shadow-md">
+                    Maîtresse Nelly
+                </div>
+            </div>
+        </div>
+
+        <!-- Section supplémentaire -->
+        <div class="mt-16 text-center">
+            <h4 class="text-3xl font-bold gradient-text mb-8">
+                Ma vision
+            </h4>
+            <p class="text-lg leading-relaxed text-gray-300 max-w-4xl mx-auto">
+                Mon rôle dépasse la simple domination : il s’agit d’un art de vivre, d’une exploration des émotions et des limites, pour éveiller les sens et provoquer une transformation intérieure. Je m’adresse à ceux et celles qui recherchent l’intensité, l’authenticité et une connexion unique. Mon univers est à la fois un espace de liberté et un sanctuaire où règnent la confiance et l’audace.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Social Media Section -->
+<section id="social-media" class="py-20 bg-gray-900 text-gray-100">
+    <div class="container mx-auto px-6 lg:px-12">
+        <h3 class="text-4xl font-extrabold gradient-text mb-12 text-center tracking-wide">
+            Suivez-moi et rejoignez la communauté
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Twitter -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:scale-105 transform transition duration-300">
+                <box-icon name="twitter" type="logo" size="3rem" color="#1DA1F2"></box-icon>
+                <h4 class="text-xl font-bold mt-4">Twitter</h4>
+                <p class="text-gray-300 mb-4">@QueenNe93659020</p>
+                <p class="text-fuchsia-500 text-2xl font-bold mb-4">
+                    <span id="twitter-count">424</span> abonnés
+                </p>
+                <a href="https://x.com/QueenNe93659020" target="_blank" class="text-fuchsia-500 border-2 border-fuchsia-500 px-6 py-2 rounded-lg hover:bg-fuchsia-600 hover:text-white transition">Me suivre</a>
+            </div>
+
+            <!-- Discord -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:scale-105 transform transition duration-300">
+                <box-icon name="discord-alt" type="logo" size="3rem" color="#5865F2"></box-icon>
+                <h4 class="text-xl font-bold mt-4">Discord</h4>
+                <p class="text-gray-300 mb-4">CFDQN Discord Server</p>
+                <p class="text-fuchsia-500 text-2xl font-bold mb-4">
+                    <span id="discord-count">99</span> membres
+                </p>
+                <a href="#" target="_blank" class="text-fuchsia-500 border-2 border-fuchsia-500 px-6 py-2 rounded-lg hover:bg-fuchsia-600 hover:text-white transition">Rejoindre</a>
+            </div>
+
+            <!-- Instagram -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:scale-105 transform transition duration-300">
+                <box-icon name="instagram" type="logo" size="3rem" color="#E4405F"></box-icon>
+                <h4 class="text-xl font-bold mt-4">Instagram</h4>
+                <p class="text-gray-300 mb-4">@queennelly955</p>
+                <p class="text-gray-300 text-2xl font-bold mb-4">Découvrez mes posts</p>
+                <a href="https://www.instagram.com/queennelly955" target="_blank" class="text-fuchsia-500 border-2 border-fuchsia-500 px-6 py-2 rounded-lg hover:bg-fuchsia-600 hover:text-white transition">Voir le profil</a>
+            </div>
+
+  <!-- Bluesky -->
+<div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center hover:scale-105 transform transition duration-300">
+    <!-- Icône Bluesky -->
+    <div class="flex justify-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-12 h-12 text-fuchsia-500">
+            <path d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"/>
+        </svg>
+    </div>
+    <!-- Contenu textuel -->
+    <h4 class="text-xl font-bold mt-2">Bluesky</h4>
+    <p class="text-gray-300 mb-2 italic">𝓠𝓾𝒆𝒆𝓷𝓝𝒆𝓵𝓵𝔂 🎀✨</p>
+    <p class="text-gray-300 text-2xl font-bold mb-4">Découvrez mes posts</p>
+    <!-- Bouton -->
+    <a href="https://bsky.app/profile/queeennelly.bsky.social" target="_blank" class="text-fuchsia-500 border-2 border-fuchsia-500 px-6 py-2 rounded-lg shadow-lg hover:bg-fuchsia-600 hover:text-white transition">
+        Voir le profil
+    </a>
+</div>
+
+  
+        </div>
+<!-- Autres liens -->
+ <br>
+ <br>
+ 
+<span class="mx-4">|</span>
+<a href="https://ngl.link/queennelly955" target="_blank" class="text-fuchsia-500 hover:underline text-lg font-bold">
+    Me poser une question sur NGL
+</a>
+</div>
+            
+
+  
+    </div>
+</section>
+
+<script>
+    // Animation pour incrémenter les compteurs
+    function animateCounter(id, start, end, duration) {
+        const element = document.getElementById(id);
+        const range = end - start;
+        let current = start;
+        const increment = range / (duration / 50);
+
+        const counter = setInterval(() => {
+            current += increment;
+            if (current >= end) {
+                current = end;
+                clearInterval(counter);
+            }
+            element.textContent = Math.floor(current);
+        }, 50);
+    }
+
+    // Lancer les animations au chargement
+    window.addEventListener('load', () => {
+        animateCounter('twitter-count', 0, 424, 2000); // Compteur Twitter
+        animateCounter('discord-count', 0, 99, 2000);  // Compteur Discord
+    });
+</script>
+
+
+
+
+
+<section id="latest-posts" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-6 lg:px-12">
+        <h3 class="text-4xl font-extrabold gradient-text mb-12 tracking-wide text-center">
+            Derniers Articles
+        </h3>
+        <!-- Grid des articles -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <!-- Article 1 -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transform transition duration-300">
+                <img src="./images/4.webp" alt="Une Expérience Inoubliable : Premier Vol en Hélicoptère à Monaco" class="rounded-md mb-4" loading="lazy">
+                <h4 class="text-2xl font-bold text-fuchsia-500 mb-4">
+                    Une Expérience Inoubliable : Premier Vol en Hélicoptère à Monaco
+                </h4>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                    Aujourd’hui, j’ai réalisé un rêve : voler au-dessus de Monaco. Accompagnée de ma compagne et d’Éloïse, ce moment à couper le souffle restera gravé à jamais. Découvrez les sensations uniques d’un vol au-dessus de la Méditerranée, et l’émotion partagée entre ciel et terre.
+                </p>
+                <a href="./blog.html" class="inline-block text-fuchsia-500 font-bold hover:underline">
+                    Lire l'article →
+                </a>
+            </div>
+            <!-- Article 2 -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transform transition duration-300">
+                <img src="./images/41.webp" alt="Monaco l’aventure commence" class="rounded-md mb-4" loading="lazy">
+                <h4 class="text-2xl font-bold text-fuchsia-500 mb-4">
+                    Monaco : L’aventure commence
+                </h4>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                    Le 27 novembre 2024, j’ai entamé une aventure exceptionnelle. Avec ma compagne et Éloïse à mes côtés, ce voyage à Monaco a été une succession de découvertes et d’émotions fortes. Plongez dans les premières étapes de cette expérience unique.
+                </p>
+                <a href="./blog.html" class="inline-block text-fuchsia-500 font-bold hover:underline">
+                    Lire l'article →
+                </a>
+            </div>
+            <!-- Article 3 -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transform transition duration-300">
+                <img src="./images/17.webp" alt="Un aperçu de ma journée spéciale" class="rounded-md mb-4" loading="lazy">
+                <h4 class="text-2xl font-bold text-fuchsia-500 mb-4">
+                    Un aperçu de ma journée spéciale
+                </h4>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                    Une journée riche en émotions, où chaque instant a pris une dimension unique. Laissez-moi vous emmener dans les coulisses de moments intimes et mémorables, marqués par des surprises et des connexions profondes.
+                </p>
+                <a href="./blog.html" class="inline-block text-fuchsia-500 font-bold hover:underline">
+                    Lire l'article →
+                </a>
+            </div>
+        </div>
+
+        <!-- Bouton pour voir tous les articles -->
+        <div class="text-center mt-16">
+            <a href="./blog.html" class="text-fuchsia-500 border-2 border-fuchsia-500 px-8 py-3 rounded-lg shadow-lg hover:bg-fuchsia-600 hover:text-white transition transform hover:scale-105 font-bold">
+                Voir tous les articles
             </a>
         </div>
-    </section>
+    </div>
+</section>
 
+    
+    
+<!-- Footer -->
+<footer class="bg-gray-800 text-gray-300 py-12">
+    <div class="container mx-auto px-6 lg:px-12">
+        <!-- Grille principale -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Section À propos -->
+            <div>
+                <h4 class="text-xl font-bold text-white mb-4">À propos</h4>
+                <p class="text-sm leading-relaxed">
+                    Bienvenue dans l'univers de Maîtresse Nelly. Explorez mes réflexions, mes expériences et mes passions à travers ce blog dédié à un mode de vie unique, empreint de confiance, de sensualité et d'authenticité.
+                </p>
+            </div>
 
+            <!-- Liens rapides -->
+            <div>
+                <h4 class="text-xl font-bold text-white mb-4">Liens rapides</h4>
+                <ul class="space-y-2">
+                    <li><a href="./index.html" class="hover:underline hover:text-fuchsia-500">Accueil</a></li>
+                    <li><a href="./blog.html" class="hover:underline hover:text-fuchsia-500">Blog</a></li>
+                    <li><a href="./contact.html" class="hover:underline hover:text-fuchsia-500">Contact</a></li>
+                    <li><a href="./metionlegale.html" class="hover:underline hover:text-fuchsia-500">Mentions légales</a></li>
+                </ul>
+            </div>
 
-
-
-    <section id="latest-posts" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6 lg:px-12">
-            <h3 class="text-4xl font-extrabold gradient-text mb-12 tracking-wide text-center">
-                Derniers Articles
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      
-                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition duration-300">
-                    <img src="./images/4.webp" alt="Titre de l'article" class="rounded-md mb-4 " loading="lazy">
-                    <h4 class="text-2xl font-bold text-fuchsia-500 mb-2">Une Expérience Inoubliable : Premier Vol en Hélicoptère à Monaco</h4>
-                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                        Aujourd’hui, j’ai réalisé un rêve, et pas seule : j’étais accompagnée de ma compagne et d’Éloïse, pour un moment à couper le souffle. Nous avons pris place à bord d’un hélicoptère pour découvrir Monaco vu du ciel, une expérience que je ne suis pas prête d’oublier.
-                    </p>
-                    <a href="./blog.html" class="text-white font-bold hover:underline">Lire l'article →</a>
-                </div>
-
-                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition duration-300">
-                    <img src="./images/41.webp" alt="Titre de l'article" class="rounded-md mb-4" loading="lazy">
-                    <h4 class="text-2xl font-bold text-fuchsia-500 mb-2">Monaco l’aventure commence</h4>
-                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
-                        Le 27 novembre 2024, une date gravée dans ma mémoire. Pour une aventure des plus excitantes : Monaco. Accompagnée de ma compagne, ma partenaire de toujours, et d’Éloïse, mon alliée dévouée, je me lance dans un voyage qui promet d’être riche en découvertes et en émotions...
-                    </p>
-                    <a href="./blog.html" class="text-white font-bold hover:underline">Lire l'article →</a>
-                </div>
-           
+            <!-- Restez connectés -->
+            <div>
+                <h4 class="text-xl font-bold text-white mb-4">Restez connectés</h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="https://x.com/QueenNe93659020" target="_blank" class="flex items-center space-x-2 hover:underline hover:text-fuchsia-500">
+                            <box-icon name="twitter" type="logo" color="#1DA1F2"></box-icon>
+                            <span>Twitter</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://bsky.app/profile/queeennelly.bsky.social" target="_blank" class="flex items-center space-x-2 hover:underline hover:text-fuchsia-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 text-fuchsia-500">
+                                <path d="M111.8 62.2C170.2 105.9 233 194.7 256 242.4c23-47.6 85.8-136.4 144.2-180.2c42.1-31.6 110.3-56 110.3 21.8c0 15.5-8.9 130.5-14.1 149.2C478.2 298 412 314.6 353.1 304.5c102.9 17.5 129.1 75.5 72.5 133.5c-107.4 110.2-154.3-27.6-166.3-62.9l0 0c-1.7-4.9-2.6-7.8-3.3-7.8s-1.6 3-3.3 7.8l0 0c-12 35.3-59 173.1-166.3 62.9c-56.5-58-30.4-116 72.5-133.5C100 314.6 33.8 298 15.7 233.1C10.4 214.4 1.5 99.4 1.5 83.9c0-77.8 68.2-53.4 110.3-21.8z"/>
+                            </svg>
+                            <span>Bluesky</span>
+                        </a>
+                    </li>
+                  
+                   
+                </ul>
             </div>
         </div>
-    </section>
 
-    
-    
+        <!-- Ligne de séparation -->
+        <hr class="my-8 border-gray-600">
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2024 Maîtresse Nelly. Tous droits réservés.</p>
-            <a href="./metionlegale.html" class="hover:underline text-fuchsia-500">Mentions légales</a>
+        <!-- Bas de page -->
+        <div class="text-center">
+            <p>&copy; 2024 <span class="text-fuchsia-500">Maîtresse Nelly</span>. Tous droits réservés.</p>
+            <p class="text-sm mt-2">
+                Design et développement avec <span class="text-fuchsia-500">passion</span>.
+            </p>
         </div>
-    </footer>
-</body>
+    </div>
+</footer>
+
 
 <script>
     document.getElementById('menu-toggle').addEventListener('click', function () {
         document.querySelector('.mobile-menu').classList.toggle('hidden');
     });
 
-       // Définir une date fixe pour la fin du compte à rebours
-    const countdownEndDate = new Date('2024-12-24T12:00:00');
-
-function updateCountdown() {
-    const now = new Date();
-    const timeLeft = countdownEndDate - now;
-
-    if (timeLeft <= 0) {
-        // Une fois le compte à rebours terminé, afficher un message et un lien
-        document.getElementById('countdown').innerHTML = `
-            <p class="text-lg md:text-2xl text-yellow-300 font-bold mb-4">
-                La surprise est arrivée !
-            </p>
-            <a href="https://x.com/QueenNe93659020" target="_blank" 
-               class="bg-pink-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-pink-600 transition duration-300">
-                Découvrir la surprise sur mon compte X
-            </a>`;
-        clearInterval(interval); // Arrête le compte à rebours
-        return;
-    }
-
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-    // Mettre à jour l'affichage du compte à rebours
-    document.getElementById('countdown').innerText = 
-        `${days} jours ${hours}h ${minutes}m ${seconds}s`;
-}
-
-// Mettre à jour le compte à rebours toutes les secondes
-const interval = setInterval(updateCountdown, 1000);
-
-// Initialisation immédiate
-updateCountdown();
+      
 </script>
 
 </html>

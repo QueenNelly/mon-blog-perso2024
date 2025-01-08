@@ -4,94 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Blog - Maîtresse Nelly</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f0f0f0;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f0;
+        }
 
-.gradient-text {
-    background: linear-gradient(45deg, #ff00d4, #00b3ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
+        .gradient-text {
+            background: linear-gradient(45deg, #ff00d4, #00b3ff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-.blog-card {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .blog-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
 
-.full-article {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    overflow-y: auto;
-}
+        .full-article {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
 
-.full-article-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 2rem;
-    width: 90%;
-    max-width: 800px;
-    border-radius: 12px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
+        .full-article-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
 
-.close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #ff00d4;
-    transition: color 0.3s ease;
-}
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #ff00d4;
+            transition: color 0.3s ease;
+        }
 
-.close-btn:hover {
-    color: #00b3ff;
-}
-
-.full-article img {
-    width: 100%;
-    max-height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-}
-
-@media (max-width: 768px) {
-    .full-article-content {
-        width: 95%;
-        margin: 2% auto;
-    }
-}
+        .close-btn:hover {
+            color: #00b3ff;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-    <header class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
-
-        
-        
+    <header class="bg-white shadow-md fixed w-full z-50">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <a href="index.html" class="text-3xl font-bold flex items-center space-x-2 gradient-text">
@@ -99,17 +80,17 @@ body {
                     <span>Maîtresse Nelly</span>
                 </a>
                 <ul class="hidden md:flex space-x-6 text-lg">
-                    <li><a href="./blog.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                    <li><a href="./blog.html" class="nav-link flex items-center">
                         <box-icon name='book' size="1.2rem" color="#ff00d4"></box-icon>
-                        <span class="ml-1">Blog</span>
+                        <span class="ml-1 text-black">Blog</span>
                     </a></li>
-                    <li><a href="Post.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                    <li><a href="./Post.html" class="nav-link flex items-center">
                         <box-icon name='repost' size="1.2rem" color="#ff00d4"></box-icon>
-                        <span class="ml-1">Post</span>
+                        <span class="ml-1 text-black">Post</span>
                     </a></li>
-                    <li><a href="Contact.html" class="nav-link hover:text-primary transition-colors duration-300 flex items-center">
+                    <li><a href="./Contact.html" class="nav-link flex items-center">
                         <box-icon name='envelope' size="1.2rem" color="#ff00d4"></box-icon>
-                        <span class="ml-1">Contact</span>
+                        <span class="ml-1 text-black">Contact</span>
                     </a></li>
                 </ul>
                 <button class="md:hidden focus:outline-none" id="menu-toggle">
@@ -117,37 +98,28 @@ body {
                 </button>
             </div>
             <div class="md:hidden">
-                <ul class="hidden mt-3 space-y-2" id="mobile-menu">
-                    <li><a href="./blog.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Blog</a></li>
-                    <li><a href="Post.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Post</a></li>
-                    <li><a href="Contact.html" class="block py-2 px-4 text-sm hover:bg-primary hover:text-white rounded transition-colors duration-300">Contact</a></li>
+                <ul class="mobile-menu hidden mt-3 space-y-2 px-4 pb-4">
+                    <li><a href="./blog.html" class="block py-2 px-4 text-sm text-white hover:bg-fuchsia-600 hover:text-white rounded transition-colors duration-300">Blog</a></li>
+                    <li><a href="post.html" class="block py-2 px-4 text-sm text-white hover:bg-fuchsia-600 hover:text-white rounded transition-colors duration-300">Post</a></li>
+                    <li><a href="contact.html" class="block py-2 px-4 text-sm text-white hover:bg-fuchsia-600 hover:text-white rounded transition-colors duration-300">Contact</a></li>
                 </ul>
             </div>
-          
-            
         </nav>
-        
     </header>
 
-    
-
-
-    
-
-    <main class="flex-grow container mx-auto px-6 py-8 mt-20">
-        <h1 class="text-4xl font-bold mb-8 text-center gradient-text">Les articles du  Blog</h1>
+    <main class="flex-grow container mx-auto px-6 py-20 mt-12">
+        <h1 class="text-4xl font-bold mb-8 text-center gradient-text">Les articles du Blog</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blogContainer"></div>
     </main>
-
-    
 
     <div id="fullArticle" class="full-article">
         <div class="full-article-content">
             <span class="close-btn">&times;</span>
             <h2 id="fullArticleTitle" class="text-3xl font-bold mb-4"></h2>
-            <img id="fullArticleImage" src="" alt="" class="rounded-lg shadow-md">
-            <div id="fullArticleDescriptions"></div> 
-            <div class="full-article-meta flex justify-between text-sm text-gray-500">
+            <img id="fullArticleImage" src="" alt="" class="rounded-lg shadow-md mb-4">
+            <div id="fullArticleDescriptions" class="mb-4"></div>
+            <div id="description2Container" class="text-gray-700"></div>
+            <div class="full-article-meta flex justify-between text-sm text-gray-500 mt-4">
                 <span id="fullArticleCategory" class="flex items-center text-blue-600"></span>
                 <span id="fullArticleAuthor" class="flex items-center text-yellow-600"></span>
                 <span id="fullArticleDate" class="flex items-center text-red-600"></span>
@@ -158,45 +130,29 @@ body {
     <footer class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-6 text-center">
             <p>&copy; 2024 Maîtresse Nelly. Tous droits réservés.</p>
-            <a href="metionlegale.html">Mention légale</a>
+            <a href="metionlegale.html" class="text-blue-400 hover:text-blue-600">Mentions légales</a>
         </div>
     </footer>
 
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script>
         const blogPosts = [
+          
             {
-                title: " Monaco l’aventure commence",
-                image: "./images/41.webp",
-                description: "Le 27 novembre 2024, une date que je n’oublierai pas. Ce jour-là, pour une destination aussi glamour qu’intrigante : Monaco. Accompagnée de ma compagne, mon roc, et d’Éloïse, ma précieuse alliée (et experte en organisation), je me lance dans un voyage qui s’annonce mémorable.",
-                description2: "Le 27 novembre 2024, une date gravée dans ma mémoire. Pour une aventure des plus excitantes : Monaco. Accompagnée de ma compagne, ma partenaire de toujours, et d’Éloïse, mon alliée dévouée, je me lance dans un voyage qui promet d’être riche en découvertes et en émotions.",
-                description3: "Le départ n’a pas été de tout repos. À 5h du matin, alors que l’île s’éveille doucement, chez nous, c’est déjà l’effervescence. Valises qui débordent, une checklist mystérieusement envolée, et une quête frénétique des passeports… Le chaos habituel d’un grand départ. Heureusement, Éloïse, méthodique comme toujours, prend les choses en main et gère tout avec une efficacité qui force l’admiration.",
-                description4: "Dans nos bagages, l’essentiel : tenues élégantes pour le glamour monégasque, accessoires soigneusement sélectionnés pour des moments intimes,. ",
-                description5: " Arrivées à l’aéroport, l’émotion monte d’un cran. Derniers regards échangés avec notre île, mélange de nostalgie et d’excitation. Mais une fois installées dans l’avion, l’euphorie du voyage prend le dessus. On discute, on rit, on débat de sujets essentiels comme Monaco est-elle une ville ou juste un bijou hors de prix ? et Le champagne à bord, c’est chic ou cliché ? Pendant ce temps, Éloïse veille discrètement à mon confort, anticipant mes moindres besoins avec son dévouement habituel.",
-                description6: "Au fil des escales, le froid européen commence à se faire sentir. Un choc après la chaleur de notre île, mais qui ajoute une touche d’exotisme à cette aventure. Et enfin, après des heures de voyage, nous atterrissons à Monaco.",
-                description7: "L’arrivée est digne d’un film. La Principauté brille de mille feux, entre les yachts illuminés du port Hercule et les décorations de fin d’année qui habillent les rues. Tout ici respire le luxe et l’élégance. Notre hôtel, avec sa vue imprenable sur la Méditerranée, nous offre un accueil digne de ce nom. Une fois installées, je prends un moment pour contempler cette nouvelle étape de ma vie. Ma compagne, avec son regard complice, partage mon excitation, tandis qu’Éloïse, toujours dévouée, s’affaire à tout organiser pour que je me sente immédiatement chez moi.",
-                description8: "Ce voyage marque bien plus qu’un simple changement de décor. C’est le début d’une nouvelle aventure, une opportunité de resserrer les liens et de créer des souvenirs inoubliables.Mais Monaco, avec son charme et son ambiance festive, ouvre un chapitre prometteur de ma vie.",
-             
-                category: "Voyage",
+                title: "Bilan de mon année 2024",
+                image: "./images/45.png",
+                description: "Découvrez mon bilan annuel et les moments marquants.",
+                description2: `
+                    Retrouvez l'article ici --> 
+                    <a href="https://www.dropbox.com/scl/fi/0ra97tx7h0r6davevwp5z/Bilan-de-mon-ann-e-2024.pdf?rlkey=sfl0pio9kwzn0smsgorgygdtu&st=kq5s6b0x&dl=0" 
+                       target="_blank" 
+                       class="text-blue-500 hover:text-blue-700 underline">
+                       Télécharger le PDF
+                    </a>
+                `,
+                category: "Lifestyle",
                 author: "QueenNelly",
-                date : "01/12/2024"
-            },
-
-            {
-                title: "Une Expérience Inoubliable : Premier Vol en Hélicoptère à Monaco",
-                image: "./images/4.webp",
-                description: "Aujourd’hui, j’ai réalisé un rêve, et pas seule : j’étais accompagnée de ma compagne et d’Éloïse, pour un moment à couper le souffle. Nous avons pris place à bord d’un hélicoptère pour découvrir Monaco vu du ciel, une expérience que je ne suis pas prête d’oublier.",
-                description2: "Aujourd’hui, j’ai réalisé un rêve, et pas seule : j’étais accompagnée de ma compagne et d’Éloïse, pour un moment à couper le souffle. Nous avons pris place à bord d’un hélicoptère pour découvrir Monaco vu du ciel, une expérience que je ne suis pas prête d’oublier.",
-                description3: "Tout a commencé par une légère appréhension en voyant l’hélicoptère se poser élégamment sur l’héliport. Mais très vite, l’excitation a pris le dessus. Équipées de nos casques et confortablement installées, nous avons senti l’appareil quitter le sol. Et là, une montée d’adrénaline : le paysage de Monaco qui s’étale sous nos pieds, magnifique et majestueux.",
-                description4: "La vue depuis là-haut est tout simplement spectaculaire. La Méditerranée scintille sous le soleil, les yachts s’alignent au port comme des perles rares, et le Palais Princier domine fièrement la colline. J’ai observé ma compagne, émerveillée, un sourire radieux sur le visage, et Éloïse, qui semblait mi-fascinée, mi-intimidée par cette expérience nouvelle ",
-                description5: "Nous avons survolé le circuit de Formule 1, les plages du Larvotto, et le célèbre Casino de Monte-Carlo. Chaque détail prenait une dimension magique vue d’en haut. Le pilote, chaleureux et professionnel, a partagé des anecdotes captivantes sur les lieux emblématiques que nous survolions.",
-                description6: "Ce vol n’a duré qu’une vingtaine de minutes, mais le souvenir restera gravé en moi pour toujours. Il n’y a rien de tel que de vivre des moments aussi extraordinaires avec des personnes chères à son cœur.",
-                description7: "Si vous avez l’occasion de visiter Monaco, je vous recommande vivement de vous offrir cette parenthèse magique. Croyez-moi, la vue en vaut mille mots !",
-                description8: "",
-             
-                category: "Voyage",
-                author: "QueenNelly",
-                date : "03/12/2024"
+                date: "2025-01-03"
             }
         ];
 
@@ -206,11 +162,11 @@ body {
                     <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
                     <div class="p-4">
                         <h2 class="text-xl font-semibold mb-2">${post.title}</h2>
-                        <p class="text-gray-600 text-sm mb-4">${post.description.substring(0, 100)}...</p>
+                        <p class="text-gray-600 text-sm mb-4">${post.description}</p>
                         <div class="flex justify-between text-sm text-gray-500">
-                            <span class="flex items-center text-blue-600 "><i class='bx bx-purchase-tag mr-1'></i>${post.category}</span>
+                            <span class="flex items-center text-blue-600"><i class='bx bx-purchase-tag mr-1'></i>${post.category}</span>
                             <span class="flex items-center text-yellow-600"><i class='bx bx-user mr-1'></i>${post.author}</span>
-                                <span class="flex items-center text-red-600"><i class='bx bx-user mr-1'></i>${post.date}</span>
+                            <span class="flex items-center text-red-600"><i class='bx bx-calendar mr-1'></i>${post.date}</span>
                         </div>
                     </div>
                 </div>
@@ -226,63 +182,19 @@ body {
             const post = blogPosts[index];
             document.getElementById('fullArticleTitle').textContent = post.title;
             document.getElementById('fullArticleImage').src = post.image;
-            document.getElementById('fullArticleImage').alt = post.title;
-
-            const descriptionsContainer = document.getElementById('fullArticleDescriptions');
-            descriptionsContainer.innerHTML = '';
-            for (let i = 1; i <= 8; i++) {
-                const descriptionKey = `description${i}`;
-                if (post[descriptionKey]) {
-                    const paragraph = document.createElement('p');
-                    paragraph.textContent = post[descriptionKey];
-                    paragraph.className = 'text-gray-700 mb-4';
-                    descriptionsContainer.appendChild(paragraph);
-                }
-            }
-
+            document.getElementById('fullArticleDescriptions').innerHTML = post.description;
+            document.getElementById("description2Container").innerHTML = post.description2;
             document.getElementById('fullArticleCategory').innerHTML = `<i class='bx bx-purchase-tag mr-1'></i>${post.category}`;
             document.getElementById('fullArticleAuthor').innerHTML = `<i class='bx bx-user mr-1'></i>${post.author}`;
-            document.getElementById('fullArticleDate').innerHTML = `<i class='bx bx-user mr-1'></i>${post.date}`;
+            document.getElementById('fullArticleDate').innerHTML = `<i class='bx bx-calendar mr-1'></i>${post.date}`;
             document.getElementById('fullArticle').style.display = 'block';
         }
 
-        document.querySelector('.close-btn').addEventListener('click', function() {
+        document.querySelector('.close-btn').addEventListener('click', function () {
             document.getElementById('fullArticle').style.display = 'none';
         });
 
         renderBlogPosts();
-
-
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 0) {
-                navbar.classList.add('shadow-lg');
-            } else {
-                navbar.classList.remove('shadow-lg');
-            }
-        });
-
-
-        document.querySelector('.close-btn').addEventListener('click', function() {
-    document.getElementById('fullArticle').style.display = 'none';
-});
-
-document.getElementById('fullArticle').addEventListener('click', function(event) {
-    // Vérifiez si l'élément cliqué est le fond du modale
-    if (event.target === document.getElementById('fullArticle')) {
-        document.getElementById('fullArticle').style.display = 'none';
-    }
-});
-
     </script>
 </body>
 </html>
